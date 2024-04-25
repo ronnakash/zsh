@@ -20,24 +20,24 @@
 
   .
 
- ├──  .gitignore
+ ├──  .gitignore               
 
- ├──  aliases.zsh
+ ├──  aliases.zsh              aliases
 
- ├──  env.zsh
+ ├──  env.zsh                  environment variables
 
- ├──  extentions
+ ├──  extentions               for specific tools
 
- │  └──  fzf.zsh
+ │  └──  fzf.zsh   
 
- ├──  functions.zsh
+ ├──  functions.zsh            function definitions
 
- ├──  init.zsh
+ ├──  init.zsh                 init script
 
- ├──  paths.zsh
+ ├──  paths.zsh                paths to export as environment variables
 
  ├──  README.md
 
  ├──  todo.md
 
- └──  zshconfig.zsh
+ └──  zshconfig.zsh            sources all non-init scripts
