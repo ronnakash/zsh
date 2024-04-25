@@ -31,6 +31,21 @@ fzf_magic() {
     source ~/.config/zshconfig/extentions/fzf/fzf_action.sh "$dir"
 }
 
+fzf_last_ten() {
+  local dir
+  local recent_dirs=$(tail -n 100 "$LASTDIRCACHEPATH" 2>/dev/null | tac)
+  dir=$(printf "%s\n" "$recent_dirs" | fzf --preview '~/.config/zshconfig/extentions/fzf/fzf_print.sh {}' --preview-window=right:70%:wrap --height 40% --reverse +m) &&
+  source ~/.config/zshconfig/extentions/fzf/fzf_action.sh "$dir"
+}
+
+fzf_top_ten() {
+  local dir
+  local recent_dirs=$(head -n 100 "$TOPDIRCACHEPATH" 2>/dev/null | awk '{print $1}')
+  dir=$(printf "%s\n" "$recent_dirs" | fzf --preview '~/.config/zshconfig/extentions/fzf/fzf_print.sh {}' --preview-window=right:70%:wrap --height 40% --reverse +m) &&
+  source ~/.config/zshconfig/extentions/fzf/fzf_action.sh "$dir"
+}
+
+
 #####################
 ###### aliases ######
 #####################
@@ -44,10 +59,15 @@ alias fa='fzf_magic_all'
 # like f but only shows files
 alias ff='fzf --preview "batcat --color=always {}" --preview-window=right:70%:wrap --height 40% --reverse --bind="enter:execute(nvim {})"'
 
+# find last 10 visited dirs
+alias fl="fzf_last_ten"
+
+# find top 10 most visited dirs
+alias ft="fzf_top_ten"
+
 # like f but only shows directories
 alias c='fzf_cd'
 
 # like fa but only shows directories
 alias ca='fzf_cd_all'
-
 

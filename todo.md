@@ -1,3 +1,5 @@
 ### TODO: 
-2. quick select menu for favorite dirs
-3. quick select menu for recent
+1. ft -> ct and fl -> cl
+2. make ft and fl for files
+3. refactor fzf code to use 1 function
+4. make cl/fl unique files
