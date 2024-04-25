@@ -21,7 +21,7 @@ fzf_magic_all() {
   local dir
   dir=$(find ${1:-.} 2>/dev/null | 
     fzf --preview '~/.config/zshconfig/extentions/fzf/fzf_print.sh {}' --preview-window=right:70%:wrap --height 70% --reverse +m) &&
-    source ~/.config/zshconfig/extentions/fzf_action.sh "$dir"
+    source ~/.config/zshconfig/extentions/fzf/fzf_action.sh "$dir"
 }
 
 fzf_magic() {
