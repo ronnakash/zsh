@@ -1,22 +1,3 @@
-source $ZSH/oh-my-zsh.sh
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
-DISABLE_UPDATE_PROMPT="true"
-export UPDATE_ZSH_DAYS=7
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 #############################################
 ##################  Paths  ##################
 #############################################
@@ -86,6 +67,11 @@ eza_ls_func() {
      eza_func "$eza_options" "$@"
  }
 
+eza_la_func() {
+     local eza_options="--long --color=always --git --no-filesize --no-time --tree --icons=always --all"
+     eza_func "$eza_options" "$@"
+ }
+
 repeat_command() {
     local command="$1"
     local interval="${2:-1}" # Default interval is 1 second
@@ -107,6 +93,7 @@ alias repeatcmd='repeat_command'
 alias zshconf="nvim -c \"cd ~\" ~/.zshrc"
 alias ls="eza_ls_func"
 alias ll="eza_ll_func"
+alias la="eza_la_func"
 alias bat="batcat"
 
 
