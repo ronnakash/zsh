@@ -41,66 +41,9 @@ update_last_directory_cache() {
   mv "$LASTDIRCACHEPATH.tmp" "$LASTDIRCACHEPATH"
 }
 
-# update_top_directory_cache() {
-#   local dir="$PWD"
-#   local cache_file="$TOPDIRCACHEPATH"
-#
-#   # Create cache file if it doesn't exist
-#   touch "$cache_file"
-#   touch "$cache_file.tmp"
-#
-#   # Read existing cache file into associative array
-#   declare -A visited_dirs
-#   while IFS= read -r line; do
-#     if [[ -n "$line" ]]; then
-#       # Extract directory path and visit count from cache line
-#       directory="${line%:*}"
-#       count="${line#*:}"
-#       visited_dirs["$directory"]=$count
-#     fi
-#   done < "$cache_file"
-#
-#   # Increment visit count for current directory
-#   if [[ -n "${visited_dirs["$dir"]}" ]]; then
-#     ((visited_dirs["$dir"]++))
-#   else
-#     visited_dirs["$dir"]=1
-#   fi
-#
-#   # Sort directories by visit count in descending order and retrieve top 10
-#   sorted_keys=()
-#   while IFS= read -r line; do
-#     echo "Read line: $line"
-#     sorted_keys+=("$line")
-#   done < <(printf "%s\n" "${!visited_dirs[@]}" | sort -t: -nrk2,2)
-#
-#   # Write sorted directories back to cache file
-#   printf "%s\n" "${sorted_keys[@]}" > "$cache_file"
-# }
-
-
-
-
-
-
 chpwd() {
   update_last_directory_cache
   update_directory_list
-}
-
-most_visited_dirs() {
-  local cache_file="$TOPDIRCACHEPATH"
-
-  # Read visit counts from cache file
-  declare -A visited_dirs
-  while IFS= read -r line; do
-    if [[ -n "$line" ]]; then
-      visited_dirs["$line"]=$(grep -c "^$line$" "$cache_file")
-    fi
-  done < "$cache_file"
-
-  # Display top 10 most visited directories
-  printf "%s\n" "${!visited_dirs[@]}" | sort -nrk2,2 | head -n 10
 }
 
 fzf_last_ten() {
@@ -114,7 +57,7 @@ fzf_last_ten() {
 fzf_top_ten() {
   local dir
   # Read last 10 directories from cache
-  local recent_dirs=$(tail -n 10 "$TOPDIRCACHEPATH" 2>/dev/null | awk '{print $1}')
+  local recent_dirs=$(head -n 10 "$TOPDIRCACHEPATH" 2>/dev/null | awk '{print $1}')
   dir=$(printf "%s\n" "$recent_dirs" | fzf --preview '~/.config/zshconfig/extentions/fzf/fzf_print.sh {}' --preview-window=right:70%:wrap --height 12 --reverse +m) &&
   source ~/.config/zshconfig/extentions/fzf/fzf_action.sh "$dir"
 }
