@@ -17,3 +17,5 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 ###### win ######
 export WIN_HOME="/mnt/c/Users/ronna"
 export DOCSPATH="/mnt/c/Users/ronna/Documents"
+
+export DIRCACHEPATH="/home/itzko/.config/zshconfig/extentions/dir_cache/cache"
