@@ -17,7 +17,7 @@
     # source config
     source ~/.config/zshconfig/zshconfig.zsh
     ```
-3. modify the existing files. If you would like to add more files, source them in the zshconfig.sh file
+3. modify the existing files. If you would like to add more files, source them in the zshconfig.zsh file
 
 ## Structure:
 
