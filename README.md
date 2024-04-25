@@ -19,14 +19,25 @@
 ### structure:
 
   .
+
  ├──  .gitignore
- ├──  aliases.zsh      aliases
- ├──  env.zsh          environment variables
- ├──  extentions       for specific extentions
+
+ ├──  aliases.zsh
+
+ ├──  env.zsh
+
+ ├──  extentions
+
  │  └──  fzf.zsh
- ├──  functions.zsh    functions definitions
- ├──  init.zsh         init script
- ├──  paths.zsh        export paths to env
+
+ ├──  functions.zsh
+
+ ├──  init.zsh
+
+ ├──  paths.zsh
+
  ├──  README.md
+
  ├──  todo.md
- └──  zshconfig.zsh    sources all non=init scripts
+
+ └──  zshconfig.zsh
