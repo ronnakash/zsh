@@ -1,6 +1,9 @@
 # OhMyZsh Configuration
 
-### Usage:
+
+
+
+## Usage:
 
 1. clone the repository to ~/.config/zshconfig 
 
@@ -16,7 +19,7 @@
     ```
 3. modify the existing files. If you would like to add more files, source them in the zshconfig.sh file
 
-### structure:
+## Structure:
 
   .
 
