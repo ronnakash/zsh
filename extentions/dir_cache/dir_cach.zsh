@@ -9,8 +9,6 @@ update_last_directory_cache() {
 }
 
 update_top_directory_cache() {
-  set -x
-
   local dir="$PWD"
   local cache_file="$TOPDIRCACHEPATH"
   
