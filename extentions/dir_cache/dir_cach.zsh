@@ -28,12 +28,21 @@ update_directory_list() {
 }
 
 update_last_directory_cache() {
-  local dir="$PWD"
-  # Append the current directory to the cache file
-  echo "$dir" >> "$LASTDIRCACHEPATH"
-  # Keep only the last 10 entries in the cache file
-  tail -n 100 "$LASTDIRCACHEPATH" > "$LASTDIRCACHEPATH.tmp"
-  mv "$LASTDIRCACHEPATH.tmp" "$LASTDIRCACHEPATH"
+    local dir="$PWD"
+    
+    # Remove existing occurrences of the directory from the cache file
+    if [ -f "$LASTDIRCACHEPATH" ]; then
+        # Use grep to filter out the directory from the cache file
+        grep -vFx "$dir" "$LASTDIRCACHEPATH" > "$LASTDIRCACHEPATH.tmp"
+        mv "$LASTDIRCACHEPATH.tmp" "$LASTDIRCACHEPATH"
+    fi
+
+    # Append the current directory to the cache file
+    echo "$dir" >> "$LASTDIRCACHEPATH"
+
+    # Keep only the last 100 entries in the cache file (adjust as needed)
+    tail -n 100 "$LASTDIRCACHEPATH" > "$LASTDIRCACHEPATH.tmp"
+    mv "$LASTDIRCACHEPATH.tmp" "$LASTDIRCACHEPATH"
 }
 
 chpwd() {
