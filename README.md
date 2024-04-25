@@ -1,6 +1,5 @@
 # OhMyZsh Configuration
 
-## Guide: 
 ### Usage:
 
 1. clone the repository to ~/.config/zshconfig 
@@ -17,7 +16,17 @@
     ```
 3. modify the existing files. If you would like to add more files, source them in the zshconfig.sh file
 
-### TODO: 
-1. multiple file config
-2. dynamic fzf for both files and dirs (bat/eza)
-3. quick select menu for favorite dirs
+### structure:
+
+  .
+ ├──  .gitignore
+ ├──  aliases.zsh      aliases
+ ├──  env.zsh          environment variables
+ ├──  extentions       for specific extentions
+ │  └──  fzf.zsh
+ ├──  functions.zsh    functions definitions
+ ├──  init.zsh         init script
+ ├──  paths.zsh        export paths to env
+ ├──  README.md
+ ├──  todo.md
+ └──  zshconfig.zsh    sources all non=init scripts
