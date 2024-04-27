@@ -4,7 +4,7 @@
 
 
 ###### zsh ######
-alias zshconf="nvim ~/.config/zshconfig"
+alias zshconf="nvim -c \" cd ~/.config/zshconfig\""
 alias ls="eza_ls_func"
 alias ll="eza_ll_func"
 alias la="eza_la_func"
@@ -48,7 +48,7 @@ alias tfd='sudo $(which terraform) destroy'
 
 ###### NEOVIM ######
 # alias v=nvim
-alias nvimconf="nvim  ~/.config/nvim"
+alias nvimconf="nvim -c \"cd ~/.config/nvim\""
 # alias nvimconf="nvim -c \"cd ~/.config/nvim\" ~/.config/nvim/lua/custom/plugins.lua"
 
 ###### GOLANG ######

@@ -21,26 +21,26 @@
 
 ## Structure:
 
-  .
+ zshconfig
 
- ├──  .gitignore               
+ ├── .gitignore               
 
- ├──  aliases.zsh              aliases
+ ├── aliases.zsh              
 
- ├──  env.zsh                  environment variables
+ ├── env.zsh                  
 
- ├──  extentions               for specific tools
+ ├── extentions               
 
- │  └──  fzf.zsh   
+ │ └── fzf.zsh   
 
- ├──  functions.zsh            function definitions
+ ├── functions.zsh            
 
- ├──  init.zsh                 init script
+ ├── init.zsh                 
 
- ├──  paths.zsh                paths to export as environment variables
+ ├── paths.zsh                
 
- ├──  README.md
+ ├── README.md
 
- ├──  todo.md
+ ├── todo.md
 
- └──  zshconfig.zsh            sources all non-init scripts
+ └── zshconfig.zsh            
