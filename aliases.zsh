@@ -17,6 +17,7 @@ alias repeatcmd='repeat_command'
 
 ###### git ######
 alias gco='git checkout'
+alias ga="git add ."
 alias gc="git commit -m"
 alias gca="git commit -a -m"
 alias gp='git push'
