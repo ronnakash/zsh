@@ -10,6 +10,7 @@ alias ls="eza_ls_func"
 alias ll="eza_ll_func"
 # TODO: add dynamic depth here
 alias lf="eza --long --tree --level=1 --all"
+# TODO: add dynamic depth here
 alias la="eza_la_func"
 alias bat="batcat"
 alias repeatcmd='repeat_command'
