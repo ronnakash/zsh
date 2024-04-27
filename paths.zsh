@@ -20,3 +20,5 @@ export DOCSPATH="/mnt/c/Users/ronna/Documents"
 
 export LASTDIRCACHEPATH="/home/itzko/.config/zshconfig/extentions/dir_cache/last"
 export TOPDIRCACHEPATH="/home/itzko/.config/zshconfig/extentions/dir_cache/top"
+export LASTFILECACHEPATH="/home/itzko/.config/zshconfig/extentions/file_cache/last"
+export TOPFILECACHEPATH="/home/itzko/.config/zshconfig/extentions/file_cache/top"

@@ -31,18 +31,32 @@ fzf_magic() {
     source ~/.config/zshconfig/extentions/fzf/fzf_action.sh "$dir"
 }
 
-fzf_last_ten() {
+fzf_last_dir() {
   local dir
   local recent_dirs=$(tail -n 100 "$LASTDIRCACHEPATH" 2>/dev/null | tac)
   dir=$(printf "%s\n" "$recent_dirs" | fzf --preview '~/.config/zshconfig/extentions/fzf/fzf_print.sh {}' --preview-window=right:70%:wrap --height 40% --reverse +m) &&
   source ~/.config/zshconfig/extentions/fzf/fzf_action.sh "$dir"
 }
 
-fzf_top_ten() {
+fzf_top_dir() {
   local dir
-  local recent_dirs=$(head -n 100 "$TOPDIRCACHEPATH" 2>/dev/null | awk '{print $1}')
-  dir=$(printf "%s\n" "$recent_dirs" | fzf --preview '~/.config/zshconfig/extentions/fzf/fzf_print.sh {}' --preview-window=right:70%:wrap --height 40% --reverse +m) &&
+  local top_dirs=$(head -n 100 "$TOPDIRCACHEPATH" 2>/dev/null | awk '{print $1}')
+  dir=$(printf "%s\n" "$top_dirs" | fzf --preview '~/.config/zshconfig/extentions/fzf/fzf_print.sh {}' --preview-window=right:70%:wrap --height 40% --reverse +m) &&
   source ~/.config/zshconfig/extentions/fzf/fzf_action.sh "$dir"
+}
+
+fzf_last_file() {
+  local dir
+  local recent_dirs=$(tail -n 100 "$LASTFILECACHEPATH" 2>/dev/null | tac)
+  dir=$(printf "%s\n" "$recent_dirs" | fzf --preview '~/.config/zshconfig/extentions/fzf/fzf_print.sh {}' --preview-window=right:70%:wrap --height 40% --reverse +m) &&
+  nvim "$dir"
+}
+
+fzf_top_file() {
+  local dir
+  local top_files=$(head -n 100 "$TOPFILECACHEPATH" 2>/dev/null | awk '{print $1}')
+  dir=$(printf "%s\n" "$top_files" | fzf --preview '~/.config/zshconfig/extentions/fzf/fzf_print.sh {}' --preview-window=right:70%:wrap --height 40% --reverse +m) &&
+  nvim "$dir"
 }
 
 
@@ -59,11 +73,11 @@ alias fa='fzf_magic_all'
 # like f but only shows files
 alias ff='fzf --preview "batcat --color=always {}" --preview-window=right:70%:wrap --height 40% --reverse --bind="enter:execute(nvim {})"'
 
-# find last 10 visited dirs
-alias fl="fzf_last_ten"
+# find last visited dirs
+alias cl="fzf_last_dir"
 
-# find top 10 most visited dirs
-alias ft="fzf_top_ten"
+# find top most visited dirs
+alias ct="fzf_top_dir"
 
 # like f but only shows directories
 alias c='fzf_cd'
@@ -71,3 +85,13 @@ alias c='fzf_cd'
 # like fa but only shows directories
 alias ca='fzf_cd_all'
 
+# find last visited dirs
+alias fl="fzf_last_file"
+
+# find top most visited dirs
+alias ft="fzf_top_file"
+
+chpwd() {
+  update_last_directory_cache "$(pwd)"
+  update_top_directory_list "$(pwd)"
+}

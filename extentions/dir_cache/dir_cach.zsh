@@ -1,5 +1,5 @@
-update_directory_list() {
-    local pwd_dir="$(pwd)"
+update_top_directory_list() {
+    local pwd_dir="$1"
     local list_file="$TOPDIRCACHEPATH"
 
     touch "$list_file"
@@ -28,25 +28,21 @@ update_directory_list() {
 }
 
 update_last_directory_cache() {
-    local dir="$PWD"
+    local dir="$1"
+    local list_file="$LASTDIRCACHEPATH"
     
     # Remove existing occurrences of the directory from the cache file
-    if [ -f "$LASTDIRCACHEPATH" ]; then
+    if [ -f "$list_file" ]; then
         # Use grep to filter out the directory from the cache file
-        grep -vFx "$dir" "$LASTDIRCACHEPATH" > "$LASTDIRCACHEPATH.tmp"
-        mv "$LASTDIRCACHEPATH.tmp" "$LASTDIRCACHEPATH"
+        grep -vFx "$dir" "$list_file" > "$list_file.tmp"
+        mv "$list_file.tmp" "$list_file"
     fi
 
     # Append the current directory to the cache file
-    echo "$dir" >> "$LASTDIRCACHEPATH"
+    echo "$dir" >> "$list_file"
 
     # Keep only the last 100 entries in the cache file (adjust as needed)
-    tail -n 100 "$LASTDIRCACHEPATH" > "$LASTDIRCACHEPATH.tmp"
-    mv "$LASTDIRCACHEPATH.tmp" "$LASTDIRCACHEPATH"
-}
-
-chpwd() {
-  update_last_directory_cache
-  update_directory_list
+    tail -n 100 "$list_file" > "$list_file.tmp"
+    mv "$list_file.tmp" "$list_file"
 }
 
