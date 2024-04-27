@@ -1,3 +1,5 @@
+# TODO: names are messed up
+
 update_top_file_list() {
   local pwd_dir="$(realpath $1)"
   local list_file="$TOPFILECACHEPATH"
@@ -51,10 +53,11 @@ update_last_file_cache() {
 
 
 nvim_wrap() {
-  set -x
   local file=
   local file_dir=
   local is_file=false
+
+  echo "Arg: $1"
 
   # Check if an argument is provided
   if [ -n "$1" ]; then
@@ -86,8 +89,7 @@ nvim_wrap() {
   update_last_directory_cache "$file_dir"
   update_top_directory_list "$file_dir"
 
-  echo "nvim -c \"cd $file_dir\""
-  eval "nvim -c \"cd $file_dir\""
+  eval "nvim -c \"cd $file_dir\" $file"
 }
 
 alias nv="nvim_wrap"
