@@ -15,5 +15,3 @@ export UPDATE_ZSH_DAYS=7
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
