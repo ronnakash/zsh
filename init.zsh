@@ -21,6 +21,8 @@ plugins=(
   you-should-use
   zsh-syntax-highlighting
   zsh-autosuggestions
+  dirhistory
+  copyfile
 )
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
