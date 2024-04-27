@@ -59,6 +59,12 @@ fzf_top_file() {
   nvim "$dir"
 }
 
+fzf_history() {
+  local dir
+  local top_files=$(tail -n +2 ~/.zsh_history 2>/dev/null | tail -n 1000 | tac | awk -F';' '{print $2}')
+  dir=$(printf "%s\n" "$top_files" | fzf --height 40% --reverse +m) &&
+  eval "$dir"
+}
 
 #####################
 ###### aliases ######
@@ -90,6 +96,8 @@ alias fl="fzf_last_file"
 
 # find top most visited dirs
 alias ft="fzf_top_file"
+
+alias hs="fzf_history"
 
 chpwd() {
   update_last_directory_cache "$(pwd)"

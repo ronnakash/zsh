@@ -57,8 +57,6 @@ nvim_wrap() {
   local file_dir=
   local is_file=false
 
-  echo "Arg: $1"
-
   # Check if an argument is provided
   if [ -n "$1" ]; then
     # Check if the provided argument is a file
@@ -76,10 +74,6 @@ nvim_wrap() {
   else
     file_dir="$(dirname "$pwd")"               # Use the current directory if no argument is provided
   fi
-
-  echo "File: $file"
-  echo "Directory: $file_dir"
-  echo "Is File: $is_file"
 
   if [ "$is_file" = true ]; then
     update_top_file_list "$file"
