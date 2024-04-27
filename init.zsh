@@ -19,5 +19,8 @@ export UPDATE_ZSH_DAYS=7
 plugins=(
   git
   you-should-use
+  zsh-syntax-highlighting
+  zsh-autosuggestions
 )
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"

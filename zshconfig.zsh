@@ -15,3 +15,5 @@ source ~/.config/zshconfig/aliases.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.config/zshconfig/extentions/powerlevel10k/p10k.zsh ]] || source ~/.config/zshconfig/extentions/powerlevel10k/p10k.zsh
+
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
