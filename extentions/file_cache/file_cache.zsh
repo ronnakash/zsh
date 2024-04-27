@@ -50,42 +50,42 @@ update_last_file_cache() {
 }
 
 
-nvim_wrap() {
-  local file=
-  local dir=
-  local is_file=false
+# nvim_wrap() {
+#   local file=
+#   local dir=
+#   local is_file=false
 
-  # Check if an argument is provided
-  if [ -n "$1" ]; then
-    # Check if the provided argument is a file
-    if [ -f "$1" ]; then
-      file="$(realpath "$1")"  # Get the full path of the provided file
-      dir="$(dirname "$file")" # Get the directory of the provided file
-      is_file=true             # Set is_file to true
-    # Check if the provided argument is a directory
-    elif [ -d "$1" ]; then
-      dir="$(realpath "$1")"   # Get the full path of the provided directory
-    else
-      echo "Invalid input: $1 is neither a file nor a directory." >&2
-      return 1
-    fi
-  else
-    dir="$(dirname "$pwd")"               # Use the current directory if no argument is provided
-  fi
+#   # Check if an argument is provided
+#   if [ -n "$1" ]; then
+#     # Check if the provided argument is a file
+#     if [ -f "$1" ]; then
+#       file="$(realpath "$1")"  # Get the full path of the provided file
+#       dir="$(dirname "$file")" # Get the directory of the provided file
+#       is_file=true             # Set is_file to true
+#     # Check if the provided argument is a directory
+#     elif [ -d "$1" ]; then
+#       dir="$(realpath "$1")"   # Get the full path of the provided directory
+#     else
+#       echo "Invalid input: $1 is neither a file nor a directory." >&2
+#       return 1
+#     fi
+#   else
+#     dir="$(dirname "$pwd")"               # Use the current directory if no argument is provided
+#   fi
 
-  echo "File: $file"
-  echo "Directory: $dir"
-  echo "Is File: $is_file"
+#   echo "File: $file"
+#   echo "Directory: $dir"
+#   echo "Is File: $is_file"
 
-  if [ "$is_file" = true ]; then
-    update_top_file_list "$file"
-    update_last_file_cache "$file"
-  fi
+#   if [ "$is_file" = true ]; then
+#     update_top_file_list "$file"
+#     update_last_file_cache "$file"
+#   fi
 
-  update_last_directory_cache "$dir"
-  update_top_directory_list "$dir"
+#   update_last_directory_cache "$dir"
+#   update_top_directory_list "$dir"
 
-  command nvim -c "cd $dir"
-}
+#   command nvim -c "cd $dir"
+# }
 
-alias nvim="nvim_wrap"
+# alias nvim="nvim_wrap"
