@@ -19,6 +19,7 @@ alias repeatcmd='repeat_command'
 alias gco='git checkout'
 alias gc="git commit -m"
 alias gca="git commit -a -m"
+alias gp='git push'
 alias gs='git stash'
 alias gsp='git stash pop'
 
