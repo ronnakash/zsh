@@ -1,3 +1,5 @@
+
+tmux_init() {
 # Start the tmux session if not alraedy in the tmux session
 if [[ ! -n $TMUX  ]]; then
   # Get the session IDs
@@ -5,7 +7,7 @@ if [[ ! -n $TMUX  ]]; then
 
   # Create new session if no sessions exist
   if [[ -z "$session_ids" ]]; then
-    tmux new-session
+    tmux -u new-session
   fi
 
   # Select from following choices
@@ -19,12 +21,15 @@ if [[ ! -n $TMUX  ]]; then
 
   if expr "$choice" : "[0-9]*$" >&/dev/null; then
     # Attach existing session
-    tmux attach-session -t "$choice"
+    tmux -u attach-session -t "$choice"
   elif [[ "$choice" = "${create_new_session}" ]]; then
     # Create new session
-    tmux new-session
+    tmux -u new-session 
   elif [[ "$choice" = "${start_without_tmux}" ]]; then
     # Start without tmux
     :
   fi
 fi
+}
+
+alias tx="tmux_init"
