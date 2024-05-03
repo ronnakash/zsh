@@ -62,6 +62,27 @@ go_project() {
   dir=$(find ${1:-~/golang} -maxdepth 1 -mindepth 1 -type d 2>/dev/null | fzf --preview "$ezacmd" --height 40% --reverse +m) && cd "$dir" && nvim
 }
 
+###### PROJECTS ######
+
+# open_project() {
+#   opts=`echo "java python go" | tr ' ' '\n'`
+#   selected=$(echo "$opts" | fzf-tmux --preview '~/.config/zshconfig/extentions/fzf/fzf_print.sh ~/repositories/{}' --preview-window=right:70%:wrap --height 40% --reverse +m)
+#   dir=$(find "${1:-~/repositories/$selected}" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | fzf --preview "$ezacmd" --height 40% --reverse +m)
+#   cd "$dir" || return 1
+#   nvim
+# }
+
+open_project() {
+  local ezacmd="eza --long --color=always --git --no-filesize --no-time --tree --level=1 --icons=always {}"
+
+  opts=`echo "java python go" | tr ' ' '\n'`
+  selected=$(echo "$opts" | fzf-tmux --preview '~/.config/zshconfig/extentions/fzf/fzf_print.sh ~/repositories/{}' --preview-window=right:70%:wrap --height 40% --reverse +m)
+
+  # TODO: dont show whole path to pick, just project name
+  dir=$(find "${1:-$HOME/repositories/$selected}" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | fzf --preview "$ezacmd" --height 40% --reverse +m)
+  cd "$dir"
+  nvim
+}
 
 ###### etc ######
 
