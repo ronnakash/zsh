@@ -10,10 +10,10 @@ export NVM_DIR="$HOME/.nvm"
 
 
 ###### GOLANG ######
-export GOPATH=/home/itzko/golang
-export GOROOT=/home/itzko/go
-export PATH=$PATH:/home/itzko/go/bin
-export PATH=$PATH:/home/itzko/golang/bin
+export GOPATH=$HOME/golang
+export GOROOT=$HOME/go
+export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/golang/bin
 
 ###### JAVA ######
-export JAVA_HOME="/home/itzko/.jdks/corretto-17.0.10"
+export JAVA_HOME="$HOME/.jdks/corretto-17.0.10"

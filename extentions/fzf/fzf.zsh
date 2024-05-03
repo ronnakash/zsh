@@ -82,7 +82,7 @@ alias f='fzf_magic'
 alias fa='fzf_magic_all'
 
 # like f but only shows files
-alias ff='fzf --preview "batcat --color=always {}" --preview-window=right:70%:wrap --height 40% --reverse --bind="enter:execute(nvim {})"'
+alias ff='fzf --preview "bat --color=always {}" --preview-window=right:70%:wrap --height 40% --reverse --bind="enter:execute(nvim {})"'
 
 # find last visited dirs
 alias cl="fzf_last_dir"
