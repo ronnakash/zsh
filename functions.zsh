@@ -73,6 +73,7 @@ go_project() {
 # }
 
 open_project() {
+  # TODO: IMPORTANT!! abort on not selected after both picks
   local ezacmd="eza --long --color=always --git --no-filesize --no-time --tree --level=1 --icons=always {}"
 
   opts=`echo "java python go" | tr ' ' '\n'`
@@ -80,9 +81,11 @@ open_project() {
 
   # TODO: dont show whole path to pick, just project name
   dir=$(find "${1:-$HOME/repositories/$selected}" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | fzf --preview "$ezacmd" --height 40% --reverse +m)
-  cd "$dir"
+  cd "$dir" || exit 1
   nvim
 }
+
+alias proj="open_project"
 
 ###### etc ######
 
