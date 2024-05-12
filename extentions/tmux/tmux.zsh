@@ -1,4 +1,3 @@
-
 tmux_init() {
 # Start the tmux session if not alraedy in the tmux session
 if [[ ! -n $TMUX  ]]; then
