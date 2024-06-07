@@ -110,3 +110,77 @@ repeat_command() {
         sleep "$interval"
     done
 }
+
+toggle_docker() {
+  if [ "$(docker ps -q)" ]; then
+    docker-compose down
+  else
+  docker-compose up -d
+  fi
+}
+
+awslogin() {
+  echo "Enter MFA"
+  read mfa
+  ~/repositories/java/devops-source/scripts/mfatoken.sh ron.nakash "$mfa"
+}
+
+
+git_vim_edit() {
+  local branch_name="$1"
+  local file_path="$2"
+  local commit_message="$3"
+
+  # Check if all arguments are provided
+  if [ -z "$branch_name" ] || [ -z "$file_path" ] || [ -z "$commit_message" ]; then
+    echo "Usage: git_vim_edit <branch_name> <file_path> <commit_message>"
+    return 1
+  fi
+
+  # Checkout the branch
+  git checkout $branch_name
+  if [ $? -ne 0 ]; then
+    echo "Failed to checkout branch $branch_name"
+    return 1
+  fi
+
+  # # Checkout the branch
+  # git checkout $branch_name
+  # if [ $? -ne 0 ]; then
+  #   echo "Failed to checkout branch $branch_name"
+  #   return 1
+  # fi
+
+  # Open the file in Vim and execute the command to search and increment the version number
+  vim -c "silent! /shared.version/" \
+      -c "normal! n" \
+      -c "normal! f<" \
+      -c "normal! h" \
+      # -c "normal! <C-a>" \
+      -c "execute 'normal! '.nr2char(getchar())" \
+      -c "let c = getline('.')[col('.') - 1]" \
+      -c "let newc = substitute(c, '\\d\\+', '\\=submatch(0) + 1', '')" \
+      -c "normal! r\\=newc" \
+      -c "update" \
+      -c "quit" $file_path
+
+
+
+  # Print the modified line containing "shared.version>"
+  local new_version_line=$(grep "shared.version>" $file_path)
+  echo "Updated line: $new_version_line"
+
+  # Add the changes to git
+  git add $file_path
+
+  # # Commit the changes
+  # git commit -m "$commit_message"
+  #
+  # # Push the changes
+  # git push origin $branch_name
+}
+
+ssi() {
+  local branch_name=$1
+  git_vim_edit "$branch_name" ./pom.xml "shared version"
+}

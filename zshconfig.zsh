@@ -22,4 +22,7 @@ source ~/.config/zshconfig/extentions/tmux/tmux.zsh
 
 ssh-add ~/.ssh/github_rsa &>/dev/null
 
+export KAFKA_BOOTSTRAPSERVERS="localhost:29092"
 
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform

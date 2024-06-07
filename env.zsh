@@ -11,9 +11,21 @@ export NVM_DIR="$HOME/.nvm"
 
 ###### GOLANG ######
 export GOPATH=$HOME/golang
-export GOROOT=$HOME/go
-export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/golang/bin
+export GOROOT=/usr/local/go/
+export PATH=$PATH:/usr/local/go/bin
 
 ###### JAVA ######
 # export JAVA_HOME="$HOME/.jdks/corretto-17.0.10"
+
+
+
+###### python ######
+
+ 
+# tcl-tk
+export LDFLAGS="-L/opt/homebrew/opt/tcl-tk/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/tcl-tk/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/tcl-tk/lib/pkgconfig"
+export PATH="/opt/homebrew/opt/tcl-tk/bin:$PATH"
+
+

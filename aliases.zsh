@@ -28,6 +28,7 @@ alias gsp='git stash pop'
 
 ###### docker ######
 alias dco="docker-compose"
+alias dcot="toggle_docker"
 alias dps="docker ps"
 alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
